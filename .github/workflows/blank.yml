@@ -1,6 +1,9 @@
 name: Automated API Tests using Postman CLI
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '*/2 * * * *'
 
@@ -8,7 +11,7 @@ jobs:
   automated-api-tests:
     runs-on: windows-latest
     steps:
-      # Checkout the code
+      # Checkout the code from the repository
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -25,7 +28,7 @@ jobs:
       - name: Run API Tests using Postman CLI
         run: postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
 
-      # Install Newman and HTML Reporter
+      # Install Newman and Newman HTML Reporter
       - name: Install Newman and Newman Reporter
         run: |
           npm install -g newman newman-reporter-htmlextra
