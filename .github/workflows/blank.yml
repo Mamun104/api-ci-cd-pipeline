@@ -1,8 +1,11 @@
 name: Automated API Tests using Postman CLI
 
 on:
+  push:  # This triggers the workflow on every push (commit)
+    branches:
+      - main  # You can specify a branch or use '*' for all branches
   schedule:
-    - cron: '*/2 * * * *'  # This cron job runs every day at midnight UTC
+    - cron: '*/2 * * * *'  # This cron job runs every 2 minutes (adjust as needed)
 
 jobs:
   automated-api-tests:
