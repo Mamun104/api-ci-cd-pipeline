@@ -1,10 +1,9 @@
 name: Automated API Tests using Postman CLI
 
 on:
-  watch:
-    - main  
   schedule:
-    - cron: '*/2 * * * *' 
+    - cron: "*/2 * * * *" # Runs every 2 minutes
+  workflow_dispatch:
 
 jobs:
   automated-api-tests:
