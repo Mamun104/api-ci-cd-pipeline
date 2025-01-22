@@ -1,0 +1,38 @@
+name: Automated API Tests using Postman CLI
+
+on: push
+
+jobs:
+  automated-api-tests:
+    runs-on: windows-latest
+    steps:
+      # Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Install Postman CLI
+      - name: Install Postman CLI
+        run: |
+          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
+
+      # Login to Postman CLI using an API key
+      - name: Login to Postman CLI
+        run: postman login --with-api-key PMAK-6790a5cd6e921600013db1e8-370cb0fafa0124fda923a8ce6b476c8e84
+
+      # Run API tests with Postman CLI
+      - name: Run API Tests using Postman CLI
+        run: postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
+
+      # Install Newman and HTML Reporter
+      - name: Install Newman and Newman Reporter
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+
+      # List files for debugging
+      - name: List files for debugging
+        run: dir
+
+      # Run API Tests using Newman (ensure the collection file exists)
+      - name: Run API Tests using Newman
+        run: newman run ./Collection/smartoffice.json -r htmlextra
