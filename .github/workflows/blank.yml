@@ -5,25 +5,10 @@ on: push
 jobs:
   automated-api-tests:
     runs-on: windows-latest
-
-    # Cache node_modules to speed up future runs
     steps:
+      # Checkout the code
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'  # Use a stable version (adjust as necessary)
-
-      # Cache node_modules folder to avoid re-installation on each run
-      - name: Cache npm modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       # Install Postman CLI
       - name: Install Postman CLI
@@ -38,8 +23,8 @@ jobs:
       - name: Run API Tests using Postman CLI
         run: postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
 
-      # Install Newman and Newman Reporter (Only required dependencies)
-      - name: Install Newman and Reporter
+      # Install Newman and HTML Reporter
+      - name: Install Newman and Newman Reporter
         run: |
           npm install -g newman newman-reporter-htmlextra
 
