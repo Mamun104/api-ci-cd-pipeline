@@ -1,9 +1,8 @@
 name: Automated API Tests using Postman CLI
 
 on:
-  push: 
-    branches:
-      - main  
+  watch:
+    - main  
   schedule:
     - cron: '*/2 * * * *' 
 
