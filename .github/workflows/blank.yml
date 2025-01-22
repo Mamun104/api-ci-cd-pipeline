@@ -1,6 +1,8 @@
 name: Automated API Tests using Postman CLI
 
-on: push
+on:
+  schedule:
+    - cron: '*/2 * * * *'  # This cron job runs every day at midnight UTC
 
 jobs:
   automated-api-tests:
