@@ -3,9 +3,9 @@ name: Automated API Tests using Postman CLI
 on:
   push:
     branches:
-      - main
+      - main  # This triggers the workflow when changes are pushed to the 'main' branch
   schedule:
-    - cron: '*/2 * * * *'
+    - cron: '*/2 * * * *'  # This cron job runs every 2 minutes (adjust as needed)
 
 jobs:
   automated-api-tests:
