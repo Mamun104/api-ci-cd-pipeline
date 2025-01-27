@@ -26,4 +26,4 @@ jobs:
       - name: Run Specific API Requests
         run: |
           # Specify tags or folders to filter and execute specific requests
-          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 --filter "login"
+          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 --folder "login"
