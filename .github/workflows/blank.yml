@@ -31,9 +31,7 @@ jobs:
       - name: Run API Tests and Generate Report
         run: |
           # Replace the collection URL with your specific collection ID
-          newman run https://api.getpostman.com/collections/39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 \
-          -r htmlextra \
-          --reporter-htmlextra-export newman-report.html
+          newman run https://api.getpostman.com/collections/39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 \-r htmlextra \--reporter-htmlextra-export newman-report.html
 
       # Upload the Newman report as an artifact
       - name: Upload Newman Report
