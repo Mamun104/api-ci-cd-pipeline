@@ -38,3 +38,7 @@ jobs:
       # Run API Tests using Newman (ensure the collection file exists)
       - name: Run API Tests using Newman
         run: newman run ./Collection/smartoffice.json -r htmlextra
+        
+      # Run API Tests using Newman (ensure the collection file exists)
+      - name: Run API Tests using Newman
+        run: newman run ./Collection/smartoffice.json -r htmlextra
