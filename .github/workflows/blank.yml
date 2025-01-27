@@ -22,14 +22,8 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-6790a5cd6e921600013db1e8-370cb0fafa0124fda923a8ce6b476c8e84
 
-      # Install Newman and HTML Reporter
-      - name: Install Newman and Newman Reporter
+      # Run specific API requests with Postman CLI
+      - name: Run Specific API Requests
         run: |
-          npm install -g newman newman-reporter-htmlextra
-
-      # Run Specific API Requests Using Newman
-      - name: Run Specific APIs using Newman
-        run: |
-          # Specify the folder(s) within the collection to run specific requests
-          newman run ./Collection/smartoffice.json -r htmlextra --folder "login"
-          
+          # Specify tags or folders to filter and execute specific requests
+          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 --filter "login"
