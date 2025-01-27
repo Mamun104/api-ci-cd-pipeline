@@ -1,4 +1,4 @@
-name: Automated API Tests using Postman CLI
+name: Automated API Tests for Specific Requests
 
 on:
   push: 
@@ -22,23 +22,14 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-6790a5cd6e921600013db1e8-370cb0fafa0124fda923a8ce6b476c8e84
 
-      # Run API tests with Postman CLI
-      - name: Run API Tests using Postman CLI
-        run: postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
-
       # Install Newman and HTML Reporter
       - name: Install Newman and Newman Reporter
         run: |
           npm install -g newman newman-reporter-htmlextra
 
-      # Run API Tests using Newman (ensure the collection file exists)
-      - name: Run API Tests using Newman
-        run: newman run ./Collection/smartoffice.json -r htmlextra
-  
-      # Run API Tests using Newman (ensure the collection file exists)
-      - name: Run API Tests using Newman
-        run: newman run ./Collection/smartoffice.json -r htmlextra
-        
-      # Run API Tests using Newman (ensure the collection file exists)
-      - name: Run API Tests using Newman
-        run: newman run ./Collection/smartoffice.json -r htmlextra
+      # Run Specific API Requests Using Newman
+      - name: Run Specific APIs using Newman
+        run: |
+          # Specify the folder(s) within the collection to run specific requests
+          newman run ./Collection/smartoffice.json -r htmlextra --folder "login"
+          
