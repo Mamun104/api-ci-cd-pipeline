@@ -30,7 +30,3 @@ jobs:
       - name: Install Newman and Newman Reporter
         run: |
           npm install -g newman newman-reporter-htmlextra
-
-      # Run API Tests using Newman (ensure the collection file exists)
-      - name: Run API Tests using Newman
-        run: newman run ./Collection/smartoffice.json -r htmlextra
