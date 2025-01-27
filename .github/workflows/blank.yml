@@ -1,17 +1,17 @@
 name: Automated API Tests using Postman CLI
 
 on:
-  push:
+  push: 
     branches:
-      - main  # This triggers the workflow when changes are pushed to the 'main' branch
+      - main 
   schedule:
-    - cron: '*/2 * * * *'  # This cron job runs every 2 minutes (adjust as needed)
+    - cron: '*/2 * * * *'
 
 jobs:
   automated-api-tests:
     runs-on: windows-latest
     steps:
-      # Checkout the code from the repository
+      # Checkout the code
       - name: Checkout Code
         uses: actions/checkout@v3
 
@@ -28,7 +28,7 @@ jobs:
       - name: Run API Tests using Postman CLI
         run: postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
 
-      # Install Newman and Newman HTML Reporter
+      # Install Newman and HTML Reporter
       - name: Install Newman and Newman Reporter
         run: |
           npm install -g newman newman-reporter-htmlextra
