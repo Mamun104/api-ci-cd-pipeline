@@ -24,7 +24,7 @@ jobs:
 
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
-        run: postman login --with-api-key cicd
+        run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
 
       #
       - name: Run API tests
