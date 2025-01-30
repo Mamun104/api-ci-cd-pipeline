@@ -26,7 +26,7 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key cicd
 
-
+      #
       - name: Run API tests
         run: | 
           postman collection run "16548351-891be621-9d54-4163-9b40-82023133d870"
