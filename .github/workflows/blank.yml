@@ -1,9 +1,11 @@
-name: Automated API Tests with Newman Reports
+name: Automated API Tests for Specific Requests
+
 
 on:
-  push: 
+  push:
     branches:
-      - main 
+      - main
+
 
 jobs:
   automated-api-tests:
@@ -13,33 +15,20 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+
       # Install Postman CLI
       - name: Install Postman CLI
         run: |
           powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
+
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-6790a5cd6e921600013db1e8-370cb0fafa0124fda923a8ce6b476c8e84
 
-      # Install Newman and htmlextra reporter
-      - name: Install Newman and htmlextra Reporter
-        run: |
-          npm install -g newman newman-reporter-htmlextra
 
-      # Download the collection file from Postman and run Newman
-      - name: Download Collection File
+      # Run specific API requests with Postman CLI
+      - name: Run Specific API Requests
         run: |
-          postman collection download 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 --output collection.json
-
-      # Run the collection with Newman and generate an HTML report
-      - name: Run API Tests and Generate Report
-        run: |
-          newman run collection.json \-r htmlextra \--reporter-htmlextra-export newman-report.html
-
-      # Upload the Newman report as an artifact
-      - name: Upload Newman Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: newman-htmlextra-report
-          path: newman-report.html
+          # Specify tags or folders to filter and execute specific requests
+          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 -i 39894904-acde7803-0859-4a63-8faf-54ff3ba3f522
