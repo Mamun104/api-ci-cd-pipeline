@@ -26,7 +26,7 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-679b684e25c1880001b65781-edf23aa8a68711fbf3c00c574acacbba09
 
-
+      #
       - name: Run API tests
         run: |
           postman collection run "39894904-66005209-c19c-4319-abd4-f4b9972dc5d7 -i 39894904-720d08bb-1fb0-4634-a717-cc68d6dd59ec"
