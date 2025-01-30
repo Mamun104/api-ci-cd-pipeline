@@ -24,11 +24,10 @@ jobs:
 
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
-        run: postman login --with-api-key PMAK-6790a5cd6e921600013db1e8-370cb0fafa0124fda923a8ce6b476c8e84
+        run: postman login --with-api-key PMAK-679b684e25c1880001b65781-edf23aa8a68711fbf3c00c574acacbba09
 
 
       # Run specific API requests with Postman CLI
-      - name: Run Specific API Requests
+      - name: Run API tests
         run: |
-          # Specify tags or folders to filter and execute specific requests
-          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
+          postman collection run "39894904-66005209-c19c-4319-abd4-f4b9972dc5d7"
