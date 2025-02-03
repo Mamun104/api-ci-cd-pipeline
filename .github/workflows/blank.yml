@@ -30,7 +30,7 @@ jobs:
       # Download the collection file using Postman CLI
       - name: Download Collection File
         run: |
-          postman collection export 16548351-891be621-9d54-4163-9b40-82023133d870 --output collection.json
+          postman collection export 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-13dc038d-2c04-4c37-841f-eff067cbcd3a --output collection.json
 
       # Run API tests with Newman and generate htmlextra report
       - name: Run API Tests and Generate Report
