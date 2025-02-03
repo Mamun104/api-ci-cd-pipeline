@@ -1,15 +1,9 @@
 name: Automated API Tests for Specific Requests
 
-
-
-
 on:
   push:
     branches:
       - main
-
-
-
 
 jobs:
   automated-api-tests:
@@ -19,23 +13,16 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-
-
-
       # Install Postman CLI
       - name: Install Postman CLI
         run: |
           powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
-
-
-
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
 
-
-      #dd
+      #Run the API Collection 
       - name: Run API tests
         run: |
-          postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40
+          postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-df9f30a5-6919-4ee8-8426-2f1f2bb1ca3f
