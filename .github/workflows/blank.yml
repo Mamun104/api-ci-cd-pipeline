@@ -1,4 +1,4 @@
-name: Automated API Tests with Newman Reports
+name: Automated API Tests for Specific Requests
 
 on:
   push:
@@ -9,44 +9,25 @@ jobs:
   automated-api-tests:
     runs-on: windows-latest
     steps:
-      # Checkout the repository
-      - name: Checkout Repository
+      # Checkout the code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Cache npm dependencies to speed up installation
-      - name: Cache npm dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # Install Postman CLI
+      - name: Install Postman CLI
+        run: |
+          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
-      # Install Newman and htmlextra Reporter
+      # Login to Postman CLI using an API key
+      - name: Login to Postman CLI
+        run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
+
+      #Run the API Collection
+      - name: Run API tests
+        run: |
+          postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40
+
+       # Install Newman and htmlextra Reporter
       - name: Install Newman and htmlextra Reporter
         run: |
           npm install -g newman@5.3.2 newman-reporter-htmlextra --loglevel=error
-
-      # Download Postman Collection
-      - name: Download Postman Collection
-        env:
-          POSTMAN_API_KEY: PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
-        run: |
-          curl --location \
-          --header "X-Api-Key: $POSTMAN_API_KEY" \
-          https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870 \
-          --output collection.json
-
-      # Run API tests and generate htmlextra report
-      - name: Run API Tests and Generate htmlextra Report
-        run: |
-          newman run collection.json \
-          -r htmlextra \
-          --reporter-htmlextra-export newman-report.html
-
-      # Upload the Newman report as an artifact
-      - name: Upload Newman Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: newman-htmlextra-report
-          path: newman-report.html
