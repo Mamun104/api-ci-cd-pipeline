@@ -27,11 +27,20 @@ jobs:
         run: |
           postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40
 
-      # Install Newman and HTML Reporter
+       # Install the latest version of Newman and htmlextra Reporter
       - name: Install Newman and htmlextra Reporter
         run: |
-         npm install -g newman@5.3.2 newman-reporter-htmlextra --loglevel=error
+          npm install -g newman newman-reporter-htmlextra --loglevel=error
 
-      #Generate the Newman HTMLExtra Report
-      - name: Run Newman
-        run: newman run 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40 -r htmlextra
+      # Run API tests and Generate Newman htmlextra Report
+      - name: Run Newman and Generate Report
+        run: |
+          newman run https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870?apikey=PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770 \
+          -r htmlextra --reporter-htmlextra-export newman-report.html
+
+      # Upload the Newman report as an artifact
+      - name: Upload Newman Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-htmlextra-report
+          path: newman-report.html
