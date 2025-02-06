@@ -25,8 +25,7 @@ jobs:
         run: |
           curl --location \
           --header "X-Api-Key: $POSTMAN_API_KEY" \
-          https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870 \
-          --output collection.json
+          https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870 \--output collection.json
 
       # Run the API collection with Newman and generate htmlextra report
       - name: Run API Tests and Generate htmlextra Report
