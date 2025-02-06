@@ -1,4 +1,4 @@
-name: Automated API Tests for Specific Requests
+name: Automated API Tests with Newman Reports
 
 on:
   push:
@@ -9,8 +9,8 @@ jobs:
   automated-api-tests:
     runs-on: windows-latest
     steps:
-      # Checkout the code
-      - name: Checkout Code
+      # Checkout the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       # Install Postman CLI
@@ -22,7 +22,26 @@ jobs:
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
 
-      #Run the API Collection 
-      - name: Run API tests
+      # Install Newman and htmlextra reporter
+      - name: Install Newman and htmlextra Reporter
         run: |
-          postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870 -i 16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40
+          npm install -g newman newman-reporter-htmlextra
+
+      # Export the collection using Postman CLI
+      - name: Export API Collection
+        run: |
+          postman collection export 16548351-891be621-9d54-4163-9b40-82023133d870 --output collection.json
+
+      # Run the API collection with Newman and generate htmlextra report
+      - name: Run API Tests and Generate htmlextra Report
+        run: |
+          newman run collection.json \
+          -r htmlextra \
+          --reporter-htmlextra-export newman-report.html
+
+      # Upload the Newman report as an artifact
+      - name: Upload Newman Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-htmlextra-report
+          path: newman-report.html
