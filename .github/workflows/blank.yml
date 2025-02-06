@@ -37,7 +37,7 @@ jobs:
       - name: Run Newman and Generate Report
         shell: bash  # Force the use of bash to interpret the Newman command correctly
         run: |
-          newman run https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870 --folder 16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40?apikey=PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770 \
+          newman run https://api.getpostman.com/collections/16548351-c96a3696-3721-40bd-845a-1b6c9c03fc40?apikey=PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770 \
           -r htmlextra --reporter-htmlextra-export newman-report.html
 
       # Upload the Newman report as an artifact
