@@ -13,24 +13,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Install Postman CLI
-      - name: Install Postman CLI
-        run: |
-          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
-
-      # Login to Postman CLI using an API key
-      - name: Login to Postman CLI
-        run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
-
       # Install Newman and htmlextra reporter
       - name: Install Newman and htmlextra Reporter
         run: |
           npm install -g newman newman-reporter-htmlextra
 
-      # Export the collection using Postman CLI
-      - name: Export API Collection
+      # Download the collection using Postman API
+      - name: Download Postman Collection
+        env:
+          POSTMAN_API_KEY: PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
         run: |
-          postman collection export 16548351-891be621-9d54-4163-9b40-82023133d870 --output collection.json
+          curl --location \
+          --header "X-Api-Key: $POSTMAN_API_KEY" \
+          https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870 \
+          --output collection.json
 
       # Run the API collection with Newman and generate htmlextra report
       - name: Run API Tests and Generate htmlextra Report
@@ -39,7 +35,7 @@ jobs:
           -r htmlextra \
           --reporter-htmlextra-export newman-report.html
 
-      # Upload the Newman report as an artifact
+      # Upload the Newman report as an artifact using v4
       - name: Upload Newman Report
         uses: actions/upload-artifact@v4
         with:
