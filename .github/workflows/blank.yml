@@ -52,7 +52,7 @@ jobs:
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
           from: ${{secrets.USERNAME}}
-          to: muhammadmamunurrashid340@gmail.com
+          to: zubair.hasan@byslglobal.com
           subject: "Automated API Test Report"
           body: |
             Please find the attached Newman htmlextra report for the latest API test run.
