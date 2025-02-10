@@ -1,4 +1,4 @@
-name: Automated API Tests for Specific Requests
+name: Automated API Tests and Send Report
 
 on:
   push:
@@ -7,38 +7,13 @@ on:
 
 jobs:
   automated-api-tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+
     steps:
-      # Checkout the code
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Install Postman CLI
-      - name: Install Postman CLI
-        run: |
-          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
-
-      # Login to Postman CLI using an API key
-      - name: Login to Postman CLI
-        run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
-
-      # Run the API Collection with Postman CLI
-      - name: Run API tests with Postman CLI
-        run: |
-          postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870
-
-      # Install Newman and htmlextra Reporter
-      - name: Install Newman and htmlextra Reporter
-        run: |
-          npm install -g newman
-          npm install -g newman-reporter-htmlextra
-
-      # Run API tests and Generate Newman htmlextra Report
-      - name: Run Newman and Generate Report
-        shell: bash  # Force the use of bash to interpret the Newman command correctly
-        run: |
-          newman run https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870?apikey=PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770 \
-          -r htmlextra --reporter-htmlextra-export newman-report.html
+      # Your API testing and Newman report generation steps go here
 
       # Upload the Newman report as an artifact
       - name: Upload Newman Report
@@ -47,15 +22,17 @@ jobs:
           name: newman-htmlextra-report
           path: newman-report.html
 
-      # Send Newman Report via Gmail
-      - name: Send Newman Report via Gmail
+      # Send the report via Gmail
+      - name: Send email with Newman Report
         uses: dawidd6/action-send-mail@v3
         with:
-          connection_url: smtp://smtp.gmail.com:587
+          server_address: smtp.gmail.com
+          server_port: 587
+          secure: true
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           from: ${{ secrets.GMAIL_USERNAME }}
-          to: mamunur.rashid@byslglobal.com
+          to: muhammadmamunurrashid340@gmail.com
           subject: "Automated API Test Report"
           body: |
             Please find the attached Newman htmlextra report for the latest API test run.
