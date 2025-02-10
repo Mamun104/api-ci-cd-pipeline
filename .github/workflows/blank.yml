@@ -52,11 +52,11 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
           # Provide the server address and port as part of the connection_url
-          connection_url: smtp://smtp.gmail.com:587  # Gmail SMTP URL with port
-          username: ${{ secrets.GMAIL_USERNAME }}  # Your Gmail address as GitHub secret
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}  # App password (GitHub secret)
-          from: ${{ secrets.GMAIL_USERNAME }}  # Sender's email address
-          to: tauhedul.amin@byslglobal.com  # Recipient's email address
+          connection_url: smtp://smtp.gmail.com:587 
+          username: ${{ secrets.GMAIL_USERNAME }}  
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}  
+          from: ${{ secrets.GMAIL_USERNAME }}  
+          to: tauhedul.amin@byslglobal.com  
           subject: "Automated API Test Report"
           body: |
             Please find the attached Newman htmlextra report for the latest API test run.
