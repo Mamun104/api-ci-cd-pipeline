@@ -46,14 +46,14 @@ jobs:
       - name: Send email with Newman Report
         uses: dawidd6/action-send-mail@v3
         with:
-            server_address: smtp.gmail.com
-            server_port: 465
-            secure: true          # Use TLS (STARTTLS)
-            username: ${{ secrets.GMAIL_USERNAME }}
-            password: ${{ secrets.GMAIL_APP_PASSWORD }}
-            from: ${{ secrets.GMAIL_USERNAME }}
-            to: ${{ secrets.GMAIL_USERNAME }}
-            subject: "Automated API Test Report"
-            body: |
-              Please find the attached Newman htmlextra report for the latest API test run.
-            attachments: newman-report.html
+          server_address: smtp.gmail.com
+          server_port: 587
+          secure: false
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          from: ${{ secrets.GMAIL_USERNAME }}
+          to: muhammadmamunurrashid340@gmail.com
+          subject: "Automated API Test Report"
+          body: |
+            Please find the attached Newman htmlextra report for the latest API test run.
+          attachments: newman-report.html
