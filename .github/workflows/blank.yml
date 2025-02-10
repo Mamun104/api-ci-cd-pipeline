@@ -52,7 +52,7 @@ jobs:
             username: ${{ secrets.GMAIL_USERNAME }}
             password: ${{ secrets.GMAIL_APP_PASSWORD }}
             from: ${{ secrets.GMAIL_USERNAME }}
-            to: muhammadmamunurrashid340@gmail.com
+            to: ${{ secrets.GMAIL_USERNAME }}
             subject: "Automated API Test Report"
             body: |
               Please find the attached Newman htmlextra report for the latest API test run.
