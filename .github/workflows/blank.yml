@@ -1,4 +1,4 @@
-name: Automated API Tests for Specific Requests
+name: Automated API Tests with Allure Reporting
 
 on:
   push:
@@ -17,6 +17,7 @@ jobs:
       - name: Install Postman CLI
         run: |
           powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
+
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770
@@ -25,44 +26,29 @@ jobs:
       - name: Run API tests with Postman CLI
         run: |
           postman collection run 16548351-891be621-9d54-4163-9b40-82023133d870
-      # Install Newman and htmlextra Reporter
-      - name: Install Newman and htmlextra Reporter
+
+      # Install Newman, Allure Reporter, and Allure Commandline
+      - name: Install Newman and Allure Reporter
         run: |
           npm install -g newman
-          npm install -g newman-reporter-htmlextra
-      # Run API tests and Generate Newman htmlextra Report
-      - name: Run Newman and Generate Report
-        shell: bash  # Force the use of bash to interpret the Newman command correctly
+          npm install -g newman-reporter-allure
+          npm install -g allure-commandline --save-dev
+
+      # Run API tests and Generate Newman Allure Report
+      - name: Run Newman and Generate Allure Report
+        shell: bash
         run: |
           newman run https://api.getpostman.com/collections/16548351-891be621-9d54-4163-9b40-82023133d870?apikey=PMAK-679b6f001b20d100012ac69c-fd41a641750ce3d43725557729738df770 \
-          -r htmlextra --reporter-htmlextra-export newman-report.html
-      # Upload the Newman report as an artifact
-      - name: Upload Newman Report
+          -r allure --reporter-allure-export allure-results
+
+      # Generate Allure Report
+      - name: Generate Allure Report
+        run: |
+          allure generate allure-results --clean -o allure-report
+
+      # Upload the Allure report as an artifact
+      - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
-          name: newman-htmlextra-report
-          path: newman-report.html
-
-      - name: Send email with Newman Report
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          secure: false
-          username: ${{secrets.USERNAME}}
-          password: ${{secrets.PASSWORD}}
-          from: ${{secrets.USERNAME}}
-          to: tauhedul.amin@byslglobal.com,mamunur.rashid@byslglobal.com,minhazur.rahman@byslglobal.com
-          subject: "Automated API Test Report"
-          body: |
-            Hello Sir,
-
-            The automated API tests have been successfully executed. Please find the attached Newman htmlextra report containing the detailed results of the latest API test run.
-
-            **Report Details:**
-            - Test Status: Completed
-            - Report Format: HTML (htmlextra)
-            - Date & Time: ${{ github.event.head_commit.timestamp }}
-
-            Kindly review the report and let us know if any issues or discrepancies are identified.
-          attachments: newman-report.html
+          name: newman-allure-report
+          path: allure-report
