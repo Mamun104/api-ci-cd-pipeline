@@ -51,7 +51,7 @@ jobs:
       - name: Send email with Newman Report
         uses: dawidd6/action-send-mail@v3
         with:
-          # Provide the server address and port as part of the connection_url
+          # Provide the server address and port as part of the connection_url gcfhg
           connection_url: smtp://smtp.gmail.com:587 
           username: ${{secrets.GMAIL_USERNAME}}  
           password: ${{secrets.GMAIL_APP_PASSWORD}}  
