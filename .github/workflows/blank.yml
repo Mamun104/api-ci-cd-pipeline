@@ -42,3 +42,18 @@ jobs:
         with:
           name: newman-htmlextra-report
           path: newman-report.html
+
+       # Send email with the report as attachment
+      - name: Send email with Newman Report
+        uses: dawidd6/action-send-mail@v3
+        with:
+         smtp-server: smtp.gmail.com
+         smtp-port: 587
+         smtp-user: mamunur.rashid@byslglobal.com
+         smtp-password: 159159159##@@!!~~
+         from: mamunur.rashid@byslglobal.com
+         to: tauhedul.amin@byslglobal.com
+         subject: "Automated API Test Report"
+         body: |
+           Please find the attached Newman htmlextra report for the latest API test run.
+         attachments: newman-report.html
