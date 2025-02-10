@@ -49,9 +49,9 @@ jobs:
           server_address: smtp.gmail.com
           server_port: 587
           secure: false
-          username: ${{ secrets.GMAIL_USERNAME }}
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          from: ${{ secrets.GMAIL_USERNAME }}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
+          from: ${{secrets.USERNAME}}
           to: muhammadmamunurrashid340@gmail.com
           subject: "Automated API Test Report"
           body: |
