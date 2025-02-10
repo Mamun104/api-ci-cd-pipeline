@@ -52,8 +52,17 @@ jobs:
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
           from: ${{secrets.USERNAME}}
-          to: mamunur.rashid@byslglobal.com
+          to: tauhedul.amin@byslglobal.com
           subject: "Automated API Test Report"
           body: |
-            Please find the attached Newman htmlextra report for the latest API test run.
+            Hello Sir,
+
+            The automated API tests have been successfully executed. Please find the attached Newman htmlextra report containing the detailed results of the latest API test run.
+
+            **Report Details:**
+            - Test Status: Completed
+            - Report Format: HTML (htmlextra)
+            - Date & Time: ${{ github.event.head_commit.timestamp }}
+
+            Kindly review the report and let us know if any issues or discrepancies are identified.
           attachments: newman-report.html
