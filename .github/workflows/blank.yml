@@ -55,7 +55,7 @@ jobs:
           username: ${{ secrets.GMAIL_USERNAME }}
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           from: ${{ secrets.GMAIL_USERNAME }}
-          to: ${{ secrets.GMAIL_USERNAME }}  # Sending to yourself
+          to: mamunur.rashid@byslglobal.com
           subject: "Automated API Test Report"
           body: |
             Please find the attached Newman htmlextra report for the latest API test run.
