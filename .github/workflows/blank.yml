@@ -47,8 +47,8 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
             server_address: smtp.gmail.com
-            server_port: 587
-            secure: false          # Use TLS (STARTTLS)
+            server_port: 465
+            secure: true          # Use TLS (STARTTLS)
             username: ${{ secrets.GMAIL_USERNAME }}
             password: ${{ secrets.GMAIL_APP_PASSWORD }}
             from: ${{ secrets.GMAIL_USERNAME }}
