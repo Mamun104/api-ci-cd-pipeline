@@ -53,9 +53,9 @@ jobs:
         with:
           # Provide the server address and port as part of the connection_url
           connection_url: smtp://smtp.gmail.com:587 
-          username: ${{ secrets.GMAIL_USERNAME }}  
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}  
-          from: ${{ secrets.GMAIL_USERNAME }}  
+          username: ${{secrets.GMAIL_USERNAME}}  
+          password: ${{secrets.GMAIL_APP_PASSWORD}}  
+          from: ${{secrets.GMAIL_USERNAME}}  
           to: tauhedul.amin@byslglobal.com  
           subject: "Automated API Test Report"
           body: |
