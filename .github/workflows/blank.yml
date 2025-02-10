@@ -52,7 +52,7 @@ jobs:
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
           from: ${{secrets.USERNAME}}
-          to: tauhedul.amin@byslglobal.com
+          to: tauhedul.amin@byslglobal.com,mamunur.rashid@byslglobal.com
           subject: "Automated API Test Report"
           body: |
             Hello Sir,
