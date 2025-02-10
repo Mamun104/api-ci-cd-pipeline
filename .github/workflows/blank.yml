@@ -55,8 +55,8 @@ jobs:
           connection_url: smtp://smtp.gmail.com:587 
           username: ${{secrets.GMAIL_USERNAME}}  
           password: ${{secrets.GMAIL_APP_PASSWORD}}  
-          from: ${{secrets.GMAIL_USERNAME}}  
-          to: tauhedul.amin@byslglobal.com  
+          from: ${{secrets.GMAIL_USERNAME}}   
+          to: ${{secrets.TO_USERNAME}} 
           subject: "Automated API Test Report"
           body: |
             Please find the attached Newman htmlextra report for the latest API test run.
