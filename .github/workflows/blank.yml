@@ -77,7 +77,7 @@ jobs:
           to: mamunur.rashid@byslglobal.com,tauhedul.amin@byslglobal.com
           subject: "Submission of Automated API Testing Report for Your Review"
           body: |
-            body: |
+
               Dear Sir,
 
               I hope this message finds you well.
@@ -91,12 +91,11 @@ jobs:
 
               Thank you for your time and consideration.
 
-
-            Thanks and Best Regards
-            ''''''''''''''''''''''''''''
-            MD. Mamunur Rashid
-            Sr. Executive, Software Quality Assurance
-            Cloud Services Division
-            Cell     : +880 1643946134
-            E-Mail   : mamunur.rashid@byslglobal.com
-            Web      : https://www.byslglobal.com/ 
+              Thanks and Best Regards
+              ''''''''''''''''''''''''''''
+              MD. Mamunur Rashid
+              Sr. Executive, Software Quality Assurance
+              Cloud Services Division
+              Cell     : +880 1643946134
+              E-Mail   : mamunur.rashid@byslglobal.com
+              Web      : https://www.byslglobal.com/ 
