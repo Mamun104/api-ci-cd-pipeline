@@ -25,7 +25,7 @@ jobs:
       # Run the API Collection with Postman CLI
       - name: Run API tests with Postman CLI
         run: |
-          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
+          postman collection run 39894904-d23093a6-504f-41f1-8a4b-ed271331bd30
 
       # Install Newman, Allure Reporter, and Allure Commandline
       - name: Install Newman and Allure Reporter
