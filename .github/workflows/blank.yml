@@ -64,7 +64,7 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true   
 
-      # Send email with GitHub Pages link
+      # Send email with GitHub Pages link with report
       - name: Send email with Allure Report Link
         uses: dawidd6/action-send-mail@v3
         with:
