@@ -20,12 +20,12 @@ jobs:
 
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
-        run: postman login --with-api-key PMAK-67ab07456e6a0100012d7965-99a44c2ad633b251c6b79c92fc8d824d20
+        run: postman login --with-api-key PMAK-67ab1b9acffbe80001bd3d24-6e47fc2a5b0725d0c4c8999ed752c2770b
 
       # Run the API Collection with Postman CLI
       - name: Run API tests with Postman CLI
         run: |
-          postman collection run 39894904-66005209-c19c-4319-abd4-f4b9972dc5d7
+          postman collection run 42111809-cb8e0811-4fa5-489b-8f03-8a33fe75a5ba
 
       # Install Newman, Allure Reporter, and Allure Commandline
       - name: Install Newman and Allure Reporter
@@ -38,7 +38,7 @@ jobs:
       - name: Run Newman and Generate Allure Report
         shell: bash
         run: |
-          newman run https://api.getpostman.com/collections/39894904-66005209-c19c-4319-abd4-f4b9972dc5d7?apikey=PMAK-67ab07456e6a0100012d7965-99a44c2ad633b251c6b79c92fc8d824d20 \
+          newman run https://api.getpostman.com/collections/42111809-cb8e0811-4fa5-489b-8f03-8a33fe75a5ba?apikey=PMAK-67ab1b9acffbe80001bd3d24-6e47fc2a5b0725d0c4c8999ed752c2770b \
           -r allure --reporter-allure-export allure-results
 
       # Generate Allure Report
