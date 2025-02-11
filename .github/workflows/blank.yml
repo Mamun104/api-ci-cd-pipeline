@@ -74,7 +74,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           from: ${{ secrets.USERNAME }}
-          to: mamunur.rashid@byslglobal.com,tauhedul.amin@byslglobal.com
+          to: mamunur.rashid@byslglobal.com
           subject: "Submission of Automated API Testing Report for Your Review"
           body: |
 
@@ -91,11 +91,4 @@ jobs:
 
               Thank you for your time and consideration.
 
-              Thanks and Best Regards
-              ''''''''''''''''''''''''''''
-              MD. Mamunur Rashid
-              Sr. Executive, Software Quality Assurance
-              Cloud Services Division
-              Cell     : +880 1643946134
-              E-Mail   : mamunur.rashid@byslglobal.com
-              Web      : https://www.byslglobal.com/ 
+        
