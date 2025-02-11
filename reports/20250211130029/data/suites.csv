@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","317","user","test cicd","Tue Feb 11 13:00:01 UTC 2025","passed","Tue Feb 11 13:00:01 UTC 2025","","user","",""
+"","303","user","test cicd","Tue Feb 11 13:00:01 UTC 2025","passed","Tue Feb 11 13:00:02 UTC 2025","","user Copy","",""
+"","587","user can't login with invalid email","test cicd","Tue Feb 11 13:00:00 UTC 2025","passed","Tue Feb 11 13:00:00 UTC 2025","","Invalid User","",""
+"","323","Login Copy","test cicd","Tue Feb 11 13:00:00 UTC 2025","passed","Tue Feb 11 13:00:01 UTC 2025","","login","",""
+"","323","Login Copy","test cicd","Tue Feb 11 13:00:01 UTC 2025","passed","Tue Feb 11 13:00:01 UTC 2025","","login Copy","",""
+"","321","customer login","test cicd","Tue Feb 11 13:00:02 UTC 2025","passed","Tue Feb 11 13:00:02 UTC 2025","","customer","",""
+"","321","customer login","test cicd","Tue Feb 11 13:00:02 UTC 2025","passed","Tue Feb 11 13:00:02 UTC 2025","","customer Copy","",""
