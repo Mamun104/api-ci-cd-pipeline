@@ -1,0 +1,1 @@
+{"message":"Login successful","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoic2FsbWFuQHJvYWR0b2NhcmVlci5uZXQiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MzkyNzcwMjMsImV4cCI6MTczOTI4MDYyM30.cM4dqZkqQyZ_tEN4PHI7KIvmG7VCOCChA-s-6pYrhRw","role":"Admin","expiresIn":"1h"}
