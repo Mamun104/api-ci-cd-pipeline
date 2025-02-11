@@ -55,30 +55,26 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
 
-      #Send email
-      - name: Send email with Newman Report
+      # Send email with GitHub Pages link
+      - name: Send email with Allure Report Link
         uses: dawidd6/action-send-mail@v3
         with:
-            server_address: smtp.gmail.com
-            server_port: 587
-            secure: false
-            username: ${{secrets.USERNAME}}
-            password: ${{secrets.PASSWORD}}
-            from: ${{secrets.USERNAME}}
-            to: mamunur.rashid@byslglobal.com
-            subject: "Automated API Test Report"
-            body: |
-              Hello Sir,
-  
-  
-              The automated API tests have been successfully executed. Please find the attached Newman htmlextra report containing the detailed results of the latest API test run.
-  
-  
-              **Report Details:**
-              - Test Status: Completed
-              - Report Format: HTML (htmlextra)
-              - Date & Time: ${{ github.event.head_commit.timestamp }}
-  
-  
-              Kindly review the report and let us know if any issues or discrepancies are identified.
-            attachments: newman-report.html
+          server_address: smtp.gmail.com
+          server_port: 587
+          secure: false
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          from: ${{ secrets.USERNAME }}
+          to: mamunur.rashid@byslglobal.com
+          subject: "Automated API Test Report"
+          body: |
+            Hello Sir,
+
+            The automated API tests have been successfully executed. You can review the detailed results in the Allure report hosted on GitHub Pages.
+
+            **Report Details:**
+            - [View Allure Report](https://mamun104.github.io/api-ci-cd-pipeline/)
+            - Test Status: Completed
+            - Date & Time: ${{ github.event.head_commit.timestamp }}
+
+            Kindly review the report and let us know if any issues or discrepancies are identified.
