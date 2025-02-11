@@ -47,21 +47,27 @@ jobs:
         run: |
           allure generate allure-results --clean -o allure-report
 
-      # Create a unique folder with timestamp to avoid overwriting previous reports
+      # Move Allure Report to Unique Folder
       - name: Move Allure Report to Unique Folder
         shell: bash
         run: |
           timestamp=$(date +%Y%m%d%H%M%S)
-          mkdir -p reports/$timestamp
-          mv allure-report/* reports/$timestamp/
+          mkdir -p public/reports/$timestamp
+          mv allure-report/* public/reports/$timestamp/
           echo "REPORT_LINK=https://mamun104.github.io/api-ci-cd-pipeline/reports/$timestamp/index.html" >> $GITHUB_ENV
+
+      # Display directory structure for debugging
+      - name: List directory structure for verification
+        shell: bash
+        run: |
+          ls -R public
 
       # Deploy Allure Report to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: reports
+          publish_dir: public
           publish_branch: gh-pages
           keep_files: true  # Keeps previous reports intact
 
