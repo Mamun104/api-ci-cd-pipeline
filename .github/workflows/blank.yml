@@ -46,12 +46,19 @@ jobs:
         run: |
           allure generate allure-results --clean -o allure-report
 
-      # Deploy Allure Report to GitHub Pages
+      # Create a unique folder name using a timestamp or a unique identifier
+      - name: Create a unique directory for the report
+        run: |
+          timestamp=$(date +%Y%m%d%H%M%S)  # Using timestamp for uniqueness
+          mkdir "allure-report-$timestamp"
+          mv allure-report "allure-report-$timestamp"  # Move report to the new folder
+
+      # Deploy Allure Report to GitHub Pages with unique folder name
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: allure-report
+          publish_dir: allure-report-$timestamp  # Use the unique folder
           publish_branch: gh-pages
           force_orphan: true
 
@@ -68,7 +75,6 @@ jobs:
           to: mamunur.rashid@byslglobal.com
           subject: "Submission of Automated API Testing Report for Your Review"
           body: |
-
             Dear Sir,
 
             I hope this message finds you well.
@@ -76,12 +82,11 @@ jobs:
             I am pleased to share that the API testing has been successfully completed, and the report has been generated using Allure Newman Reporter. 
             You may review the detailed findings at your convenience via the link below:
 
-            https://mamun104.github.io/api-ci-cd-pipeline/
+            https://mamun104.github.io/api-ci-cd-pipeline/allure-report-$timestamp/
 
             Kindly let me know if you have any feedback or require further clarification on any specific areas.
 
             Thank you for your time and consideration.
-
 
             Thanks and Best Regards
             ''''''''''''''''''''''''''''
