@@ -66,15 +66,28 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           from: ${{ secrets.USERNAME }}
           to: mamunur.rashid@byslglobal.com
-          subject: "Automated API Test Report"
+          subject: "Submission of Automated API Testing Report for Your Review"
           body: |
-            Hello Sir,
 
-            The automated API tests have been successfully executed. You can review the detailed results in the Allure report hosted on GitHub Pages.
+            Dear Sir,
 
-            **Report Details:**
-            - [View Allure Report](https://mamun104.github.io/api-ci-cd-pipeline/)
-            - Test Status: Completed
-            - Date & Time: ${{ github.event.head_commit.timestamp }}
+            I hope this message finds you well.
 
-            Kindly review the report and let us know if any issues or discrepancies are identified.
+            I am pleased to share that the API testing has been successfully completed, and the report has been generated using Allure Newman Reporter. 
+            You may review the detailed findings at your convenience via the link below:
+
+            https://mamun104.github.io/api-ci-cd-pipeline/
+
+            Kindly let me know if you have any feedback or require further clarification on any specific areas.
+
+            Thank you for your time and consideration.
+
+
+            Thanks and Best Regards
+            ''''''''''''''''''''''''''''
+            MD. Mamunur Rashid
+            Sr. Executive, Software Quality Assurance
+            Cloud Services Division
+            Cell     : +880 1643946134
+            E-Mail   : mamunur.rashid@byslglobal.com
+            Web      : https://www.byslglobal.com/ 
