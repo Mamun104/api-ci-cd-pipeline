@@ -1,9 +1,11 @@
 name: Automated API Tests with Allure Reporting
 
+
 on:
   push:
     branches:
       - main
+
 
 jobs:
   automated-api-tests:
@@ -13,19 +15,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+
       # Install Postman CLI
       - name: Install Postman CLI
         run: |
           powershell.exe -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
+
       # Login to Postman CLI using an API key
       - name: Login to Postman CLI
         run: postman login --with-api-key PMAK-67ab1b9acffbe80001bd3d24-6e47fc2a5b0725d0c4c8999ed752c2770b
+
 
       # Run the API Collection with Postman CLI
       - name: Run API tests with Postman CLI
         run: |
           postman collection run 42111809-cb8e0811-4fa5-489b-8f03-8a33fe75a5ba
+
 
       # Install Newman, Allure Reporter, and Allure Commandline
       - name: Install Newman and Allure Reporter
@@ -34,55 +40,29 @@ jobs:
           npm install -g newman-reporter-allure
           npm install -g allure-commandline --save-dev
 
+
       # Run API tests and Generate Newman Allure Report
       - name: Run Newman and Generate Allure Report
         shell: bash
         run: |
-          newman run https://api.getpostman.com/collections/39894904-66005209-c19c-4319-abd4-f4b9972dc5d7?apikey=PMAK-67ab07456e6a0100012d7965-99a44c2ad633b251c6b79c92fc8d824d20 \
+          newman run https://api.getpostman.com/collections/42111809-cb8e0811-4fa5-489b-8f03-8a33fe75a5ba?apikey=PMAK-67ab1b9acffbe80001bd3d24-6e47fc2a5b0725d0c4c8999ed752c2770b \
           -r allure --reporter-allure-export allure-results
 
-      - name: Verify Allure Results After Newman
-        shell: bash
-        run: |
-          if [ -d "allure-results" ]; then
-            echo "Allure results directory created after Newman run."
-          else
-            echo "Allure results directory NOT created after Newman run!"
-            exit 1
-          fi
 
+      # Generate Allure Report
       - name: Generate Allure Report
-        shell: bash
         run: |
           allure generate allure-results --clean -o allure-report
 
-      - name: Check if Allure Report Exists
-        shell: bash
-        run: |
-          if [ -d "allure-report" ]; then
-            echo "Allure report directory exists."
-          else
-            echo "Allure report directory does not exist!"
-            exit 1
-          fi
 
-      - name: Create a unique directory for the report
-        shell: bash
-        run: |
-          timestamp=$(date +%Y%m%d%H%M%S)
-          mkdir "allure-report-$timestamp"
-          mv allure-report "allure-report-$timestamp"
-          echo "timestamp=$timestamp" >> $GITHUB_ENV
-
-
-      # Deploy Allure Report to GitHub Pages with unique folder name
+      # Deploy Allure Report to GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-              github_token: ${{ secrets.TOKEN }}
-              publish_dir: allure-report-${{ env.timestamp }}
-              publish_branch: gh-pages
-              force_orphan: true    
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: allure-report
+          publish_branch: gh-pages
+          force_orphan: true   
 
       # Send email with GitHub Pages link
       - name: Send email with Allure Report Link
