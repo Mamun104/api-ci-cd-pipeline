@@ -74,7 +74,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           from: ${{ secrets.USERNAME }}
-          to: mamunur.rashid@byslglobal.com
+          to: mamunur.rashid@byslglobal.com,tauhedul.amin@byslglobal.com
           subject: "Submission of Automated API Testing Report for Your Review"
           body: |
             body: |
@@ -85,7 +85,7 @@ jobs:
               I am pleased to share that the API testing has been successfully completed, and the report has been generated using Allure Newman Reporter.
               You may review the detailed findings at your convenience via the link below:
 
-              https://mamun104.github.io/api-ci-cd-pipeline/allure-report-${{ env.timestamp }}/
+              https://mamun104.github.io/api-ci-cd-pipeline/
 
               Kindly let me know if you have any feedback or require further clarification on any specific areas.
 
