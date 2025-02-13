@@ -81,7 +81,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           from: ${{ secrets.USERNAME }}
-          to: mamunur.rashid@byslglobal.com,tauhedul.amin@byslglobal.com,minhazur.rahman@byslglobal.com,moinul.islam@byslglobal.com
+          to: mamunur.rashid@byslglobal.com,minhazur.rahman@byslglobal.com,moinul.islam@byslglobal.com
           subject: "Submission of Automated API Testing Report for Your Review"
           body: |
 
