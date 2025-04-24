@@ -38,7 +38,7 @@ This project simulates a simple user management system. The available REST API o
 
 ## 📑 API Documentation
 
- Click to View
+ [Click to View](https://documenter.getpostman.com/view/16548351/2sA3BoaXSA#116cbeb2-02e8-4637-9d46-3caedd1bd5f0)
 
 ## How to set up Postman CLI Configuration with GitHub
 
