@@ -2,39 +2,39 @@
 
 ## 🚀 Technologies & Tools Used
 
-🧪 Postman – for API testing and automation
+- Postman – for API testing and automation
 
-💻 Visual Studio Code – code editor
+- Visual Studio Code – code editor
 
-⚙️ CI/CD – Continuous Integration and Continuous Deployment
+- CI/CD – Continuous Integration and Continuous Deployment
 
-🔧 GitHub – version control and GitHub Actions for pipeline
+- GitHub – version control and GitHub Actions for pipeline
 
-🖥️ Terminal – command-line tool
+- Terminal – command-line tool
 
 ## ✅ Prerequisites
 
 Make sure you have the following installed:
 
-✅ Postman Desktop App
+- Postman Desktop App
 
-✅ Postman CLI (Command Line Interface) – Install Guide
+- Postman CLI (Command Line Interface) – Install Guide
 
 ## 🔍 API Project Scenario
 
 This project simulates a simple user management system. The available REST API operations include:
 
-➕ Create a user
+- Create a user
 
-➕ Create a user by ID and name
+- Create a user by ID and name
 
-📄 Retrieve all users
+- Retrieve all users
 
-🔍 Retrieve a user by ID
+- Retrieve a user by ID
 
-✏️ Update a user by ID
+- Update a user by ID
 
-❌ Delete a user by ID
+- Delete a user by ID
 
 ## 📑 API Documentation
 
@@ -46,11 +46,11 @@ This project simulates a simple user management system. The available REST API o
 
 🔹 Step 1: Setup in Postman
 
-1. Open Postman
+- Open Postman
 
-2. Create a Workspace
+- Create a Workspace
 
-3. Create a Collection
+- Create a Collection
 
 ### 🔹 Step 2: Collection Run Setup
 - Click the collection
